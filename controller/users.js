@@ -31,8 +31,8 @@ router.get('/search', auth, (request, response) => {
 });
 
 router.post('/',(request, response) => {
-    const {firstName, lastName, email, password} = request.body;
-    if(!firstName || !email || !password) {
+    const {name, lastName, email, password} = request.body;
+    if(!name || !email || !password) {
         return response.status(400).json({success: false, msg: "bad request"});
     }
     user.findOne({email})
@@ -42,7 +42,7 @@ router.post('/',(request, response) => {
             }
             else {
                 const newUser = new User({
-                    firstName,
+                    name,
                     lastName,
                     email,
                     password,
@@ -59,7 +59,7 @@ router.post('/',(request, response) => {
                         newUser.save()
                         .then(user => {
                             jwt.sign(
-                                {id: user.id, name: user.email, firstName: user.firstName, lastName: user.lastName},
+                                {id: user.id, name: user.email, name: user.name, lastName: user.lastName},
                                 config.secret,
                                 {expiresIn: config.tokenExpire},
                                 (err, token) => {
@@ -67,7 +67,7 @@ router.post('/',(request, response) => {
                                         throw err;
                                     }
                                     else {
-                                        response.json({success: true, token, user: {id: user.id, firstName: user.firstName, lastName: user.lastName}});
+                                        response.json({success: true, token, user: {id: user.id, name: user.name, lastName: user.lastName}});
                                     }
                                 }
                             )
