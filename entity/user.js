@@ -10,6 +10,9 @@ const userSchema = new mongoose.Schema({
         required:   true,
         trim:       true,
     },
+    lastName: {
+        type: String
+    },
     email:  {
         type:       String,
         unique:     true,
@@ -33,30 +36,27 @@ const userSchema = new mongoose.Schema({
             }
         },
     },
-   
-    tokens: [{
-        token: {
-            type:       String,
-            required:   true,
-        },
-    }],
+    status: {
+        type: String,
+        required: true,
+        default: 'Active'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    lastLogin: {
+        type: Date
+    }
+
     
 }, {
     timestamps:     true,
 })
-userSchema.virtual("Tasks", {
-    ref:            'Task',
-    localField:     "_id",
-    foreignField:   "owner",
-})
-userSchema.methods.generateAuthToken = async function () {
-    const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
-    user.tokens = user.tokens.concat({ token: token })
-    await user.save()
-
-    return token
-}
 
 userSchema.pre('save', async function(next) {
     const user = this
