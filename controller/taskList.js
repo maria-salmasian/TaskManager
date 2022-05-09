@@ -1,7 +1,7 @@
 const express = require('express');
 
 const authTaskList = require ('../authorization/tasklistAuth');
-const authBoard = require ('../../authorization/boadAuth');
+const authBoard = require ('../authorization/boardAuth');
 const taskList = require('../entity/taskList');
 const board = require('../entity/board');
 const task = require('../entity/task');

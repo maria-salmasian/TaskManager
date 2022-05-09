@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Schema = require('mongoose').Schema;
 
 
 const taskSchema = new mongoose.Schema({
@@ -30,8 +31,8 @@ const taskSchema = new mongoose.Schema({
         type: Date
     },
     taskListId: {
-        type:Schema.Types.ObjectId, 
-        ref: 'TaskList'
+        type: Schema.Types.ObjectId, 
+        ref: 'taskList'
     },
     createdAt: {
         type: Date,

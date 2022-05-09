@@ -4,7 +4,7 @@ const jwt = require ('jsonwebtoken');
 
 const config = require('../common/config/config');
 const auth = require ('../authorization/auth');
-const user = require('../entity/user');
+const User = require('../entity/user');
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ router.post('/',(request, response) => {
     if(!name || !email || !password) {
         return response.status(400).json({success: false, msg: "bad request"});
     }
-    user.findOne({email})
+    User.findOne({email})
         .then(user=> {
             if(user){
                 return response.status(400).json({success: false, msg: "user already exists"});
