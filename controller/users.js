@@ -7,26 +7,12 @@ const User = require('../entity/user');
 const router = express.Router();
 
 
-router.get('/search', auth, (request, response) => {
-    if (typeof request.query.email != 'undefined') {
-        User.find({ email: request.query.email })
-            .select('-password')
-            .then(user => {
-                if (user.length == 0) {
-                    response.status(404).json({ success: false, msg: "user not found" });
-                }
-                else {
-                    response.json(user);
-                }
+router.get('/:email/', auth, asyncHandler(async (req, res) => {
+    const index = req.params['email'];
+    const result = await userService.getUser(index);
+    res.send(result);
 
-            })
-            .catch(error => response.status(500).json({ success: false, msg: error }))
-    }
-    else {
-        response.status(400).json({ success: false, msg: "invalid search" })
-    }
-
-});
+}));
 
 router.post('/', asyncHandler(async (req, res) => {
    try{

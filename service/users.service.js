@@ -35,9 +35,16 @@ module.exports = {
             }
           );
         newUser.token = token;
-        // jwt.sign(newUser,config.secret,{expiresIn: config.tokenExpire})
         return newUser;
         
+    },
+    async getUser(email){
+        const user = await User.find({email:email});
+        if (!user) {
+            throw new NotFoundError(`User with email = ${email} is not found!`);
+        }
+
+        return student;
     }
 }
 
