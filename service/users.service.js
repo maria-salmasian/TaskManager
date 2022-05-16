@@ -4,7 +4,6 @@ const NotFoundError = require('../common/errors/not-found.error');
 const UnauthorizedError = require('../common/errors/unauthorized.error');
 
 const config = require('../common/config/config');
-const auth = require ('../authorization/auth');
 const User = require('../entity/user');
 module.exports = {
     async createUser(body){
@@ -35,7 +34,7 @@ module.exports = {
             }
           );
         newUser.token = token;
-        return newUser;
+        return newUser.save();
         
     },
     async getUser(email){

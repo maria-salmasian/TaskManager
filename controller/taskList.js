@@ -1,61 +1,44 @@
 const express = require('express');
 
-const authTaskList = require ('../authorization/tasklistAuth');
-const authBoard = require ('../authorization/boardAuth');
-const taskList = require('../entity/taskList');
-const board = require('../entity/board');
-const task = require('../entity/task');
-const user = require('../entity/user');
+const authTaskList = require('../authorization/tasklistAuth');
+const authBoard = require('../authorization/boardAuth');
+const asyncHandler = require('express-async-handler');
+const taskListService = require('../service/tasklist.service');
 
 const router = express.Router();
 
+router.post('/', authBoard, asyncHandler(async (req, res) => {
 
-router.post('/', authBoard, (request, response) => {
-    const {taskListName, boardId} = request.body;
-    if(!taskListName || !boardId){
-        return response.status(400).json({success: false, msg:"bad request"})
-    }
-    else{
-        if(request.boardAccess){
-
-            if(request.boardAccess ==='Admin') {
-                const newTaskList = new TaskList({
-                    taskListName: request.body.taskListName,
-                    boardId: request.body.boardId
-                });
-                newTaskList.save()
-                    .then(taskList => response.json(taskList))
-                    .catch(error => response.status(500).json({success: false, msg: error}));
-            }
-            else {
-                response.status(401).json({ success: false, msg: "access denied" });
-            }
+    if (req.boardAccess) {
+        if (req.boardAccess === 'Admin') {
+            const newTaskList = taskListService.createTaskList(req.body);
+            res.status(201).send(newTaskList);
         }
         else {
-            response.status(401).json({ success: false, msg: "access denied" });
-        }
-    }
-})
-
-
-
-router.get('/:tasklistid', authTaskList, (request, response) => {
-    
-    if(request.boardAccess){
-        if(request.boardAccess ==='User' || request.boardAccess ==='Admin') {
-            task.find({taskListId: request.params.tasklistid})
-                .then(task => { 
-                    response.json({taskListId: request.params.tasklistid, task});
-                })
-                .catch(error => response.status(500).json({success: false, msg: error}))
-        }
-        else {
-            response.status(401).json({ success: false, msg: "access denied"})
+            res.status(401).send({ success: false, msg: "access denied" });
         }
     }
     else {
-        response.status(401).json({success: false, msg: "access denied"})
+        res.status(401).send({ success: false, msg: "access denied" });
     }
-})
+
+}))
+
+router.get('/:tasklistid', authTaskList, asyncHandler(async (req, res) => {
+
+    if (request.boardAccess) {
+        if (request.boardAccess === 'User' || request.boardAccess === 'Admin') {
+            const index = req.params['tasklistid'];
+            const taskList = taskListService.getTaskList(index);
+            res.send(taskList);
+        }
+        else {
+            res.status(401).send({ success: false, msg: "access denied" })
+        }
+    }
+    else {
+        res.status(401).send({ success: false, msg: "access denied" })
+    }
+}))
 
 module.exports = router;
