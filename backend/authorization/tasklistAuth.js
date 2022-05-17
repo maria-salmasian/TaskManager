@@ -1,9 +1,9 @@
 const config = require('../common/config/config');
 const jwt = require('jsonwebtoken');
 
-const board = require('../../entity/board');
+const board = require('../entity/board');
 
-const taskList = require('../../entity/taskList');
+const taskList = require('../entity/taskList');
 
 
 function authTaskList(request, response, next) {

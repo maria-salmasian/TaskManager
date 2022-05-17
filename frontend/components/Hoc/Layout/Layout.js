@@ -1,7 +1,7 @@
 import React from 'react'
 import AppNavbar from '../../../components/Navigation/AppNavbar';
 
-function Layout() {
+function Layout(props) {
 
     return(
             <div className="Content">

@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const users = require('./controller/users');
-const boards = require('./controller/boards');
-const taskLists = require('./controller/taskList');
-const tasks = require('./controller/tasks');
-const auth = require('./controller/auth');
-const config = require('./common/config/config');
+const users = require('./backend/controller/users');
+const boards = require('./backend/controller/boards');
+const taskLists = require('./backend/controller/taskList');
+const tasks = require('./backend/controller/tasks');
+const auth = require('./backend/controller/auth');
+const config = require('./backend/common/config/config');
 const cors = require('cors');
 
 const app = express();

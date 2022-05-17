@@ -59,24 +59,24 @@ function TaskListSwimLane(props) {
 
   const newTaskControls = () => (
       <div>
-        <Button size="small" color="primary" onClick = {this.addTask}>
+        <Button size="small" color="primary" onClick = {addTask}>
           Add Task
         </Button>
-        <Button size="small" color="primary" onClick = {this.disableNewTak}>
+        <Button size="small" color="primary" onClick = {disableNewTak}>
           Delete
         </Button>
       </div>
   );
   const taskListControls = () => (
-      <Button size="small" color="primary" onClick={this.addAnotherTask}>
+      <Button size="small" color="primary" onClick={addAnotherTask}>
           Add Another Task
       </Button>
   );
 
   let tasks = [];
-  console.log("Before Filter, taskList is: " + this.props.taskLists.taskLists.taskLists[0]);
-  this.props.taskLists.taskLists.taskLists.filter((taskList)=> {
-   return taskList.taskListName ===this.props.taskListName;
+  console.log("Before Filter, taskList is: " + props.taskLists.taskLists.taskLists[0]);
+  props.taskLists.taskLists.taskLists.filter((taskList)=> {
+   return taskList.taskListName ===props.taskListName;
   })
   .map((taskList) => {
     taskList.tasks.map((task) => {
@@ -89,13 +89,13 @@ function TaskListSwimLane(props) {
       <Card className={classes.root}>
         <CardContent>
           <Typography gutterBottom variant="body1" component="p" align="left">
-            {this.props.taskListName}
+            {props.taskListName}
           </Typography>
     <div>{tasks}</div>
-          {this.state.newTask ? <NewTask setNewTaskTitle= {this.setNewTaskTitle}/> : null}
+          {state.newTask ? <NewTask setNewTaskTitle= {setNewTaskTitle}/> : null}
         </CardContent>
         <CardActions>
-            {this.state.newTask ? newTaskControls : taskListControls}
+            {state.newTask ? newTaskControls : taskListControls}
         </CardActions>
       </Card>
     );

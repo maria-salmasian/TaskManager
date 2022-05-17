@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 import { getBoards, createBoard, setWorkingBoard } from "../../actions/boardActions";
 import {verifyToken} from "../../actions/authActions";
 
-const {classes} = props
+const classes = useStyles();
 
 const useStyles = (theme) => ({
   root: {

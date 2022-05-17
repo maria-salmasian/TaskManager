@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { clearErrors } from "../../actions/errorActions";
@@ -44,15 +44,18 @@ const useStyles = (theme) => ({
   },
 });
 
-function Register() {
-  state = {
-    modal: false,
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    msg: null,
-  };
+const classes = useStyles();
+
+function Register(props) {
+  const [modal, setModal] = useState(false)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [msg, setMsg] = useState(null)
+
+
+
 
   propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -62,63 +65,63 @@ function Register() {
   };
 
   componentDidUpdate(prevProps) = () => {
-    const { error, isAuthenticated } = this.props;
+    const { error, isAuthenticated } = props;
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {
-        this.setState({ msg: error.msg.msg });
+        setState({ msg: error.msg.msg });
       } else {
-        this.setState({ msg: null });
+        setState({ msg: null });
       }
     }
 
-    if (this.state.modal) {
+    if (state.modal) {
       if (isAuthenticated) {
-        this.toggle();
+        toggle();
       }
     }
   }
 
   toggle = () => {
-    this.props.clearErrors();
-    this.setState({
-      modal: !this.state.modal,
+    props.clearErrors();
+    setState({
+      modal: !state.modal,
     });
   };
 
   onChange = (e) => {
-    this.setState({
+    setState({
       [e.target.name]: e.target.value,
     });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, password } = this.state;
+    const { firstName, lastName, email, password } = state;
     const newUser = {
       firstName,
       lastName,
       email,
       password,
     };
-    this.props.register(newUser);
+    props.register(newUser);
   };
 
 
     return (
       <div>
-        <NavLink onClick={this.toggle} href="#">
+        <NavLink onClick={toggle} href="#">
           Register
         </NavLink>
         <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
+          isOpen={state.modal}
+          toggle={toggle}
         >
-          <ModalHeader toggle={this.toggle}>Please Register</ModalHeader>
+          <ModalHeader toggle={toggle}>Please Register</ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
-              <Alert color="danger"> {this.state.msg} </Alert>
+            {state.msg ? (
+              <Alert color="danger"> {state.msg} </Alert>
             ) : null}
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={onSubmit}>
               <FormGroup>
                 <TextField
                   className={classes.textField}
@@ -127,7 +130,7 @@ function Register() {
                   id="standard-size-firstName"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <TextField
                   className={classes.textField}
@@ -136,7 +139,7 @@ function Register() {
                   id="standard-size-lastName"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <TextField
                   className={classes.textField}
@@ -145,7 +148,7 @@ function Register() {
                   id="standard-size-email"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <TextField
                   className={classes.textField}
@@ -155,7 +158,7 @@ function Register() {
                   id="standard-size-password"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <Button className={classes.button}>Register</Button>
               </FormGroup>

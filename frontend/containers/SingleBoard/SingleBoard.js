@@ -30,7 +30,7 @@ const styles = {
   },
 };
 
-const {classes} = props
+const classes = useStyles();
 
 function SingleBoard (props) {
     const [open, setOpen] = useState(false)
