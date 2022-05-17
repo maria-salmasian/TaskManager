@@ -1,5 +1,5 @@
 import axios from "axios"; 
-import * as backend from '../../config';
+import * as backend from '../config';
 import * as actions from "./types";
 import { returnErrors } from "./errorActions";
 import {tokenConfig} from './authActions';

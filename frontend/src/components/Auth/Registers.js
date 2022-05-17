@@ -61,7 +61,7 @@ function Register() {
     clearErrors: PropTypes.func.isRequired,
   };
 
-  componentDidUpdate(prevProps) = () => {
+  function componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
 import Layout from "./components/Hoc/Layout/Layout";
@@ -18,10 +18,10 @@ function App(props) {
         <div className="App">
           <Layout>
             <BrowserRouter>
-              <Switch>
+              <Routes>
                 <Route path="/board" component={SingleBoard} />
                 <Route path="/" exact component={Boards} />
-              </Switch>
+              </Routes>
             </BrowserRouter>
           </Layout> 
         </div>

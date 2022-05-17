@@ -44,46 +44,48 @@ const useStyles = (theme) => ({
   },
 });
 
-function Login (){
+const {classes} = useStyles()
+
+function Login (props){
 const [modal, setModal] = useState(false)
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
 const [msg, setMsg] = useState(null)
 
 
-   propTypes = {
+   PropTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
   };
 
-  componentDidUpdate(prevProps) = () => {
-    const { error, isAuthenticated } = this.props;
+  function componentDidUpdate(prevProps) {
+    const { error, isAuthenticated } = props;
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {
-        this.setState({ msg: error.msg.msg });
+        useState({ msg: error.msg.msg });
       } else {
-        this.setState({ msg: null });
+        useState({ msg: null });
       }
     }
 
-    if (this.state.modal) {
+    if (state.modal) {
       if (isAuthenticated) {
-        this.toggle();
+        toggle();
       }
     }
   }
 
   toggle = () => {
-    this.props.clearErrors();
-    this.setState({
+    props.clearErrors();
+    useState({
       modal: !this.state.modal,
     });
   };
 
   onChange = (e) => {
-    this.setState({
+    useState({
       [e.target.name]: e.target.value,
     });
   };
@@ -96,21 +98,21 @@ const [msg, setMsg] = useState(null)
       password,
     };
     // Login
-    this.props.login(user);
+    props.login(user);
   };
 
   const classes = props;
   return(
     
       <div>
-        <NavLink onClick={this.toggle} href="#">
+        <NavLink onClick={toggle} href="#">
           Login
         </NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>User Login</ModalHeader>
+        <Modal isOpen={state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={toggle}>User Login</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
-              <Alert color="danger"> {this.state.msg} </Alert>
+              <Alert color="danger"> {state.msg} </Alert>
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>

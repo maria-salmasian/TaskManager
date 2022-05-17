@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Register from '../Auth/Register';
+import Register from '../Auth/Registers';
 import Login from '../Auth/Login';
 import Logout from '../Auth/Logout';
 

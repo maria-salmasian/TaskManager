@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as backend from '../../config';
+import * as backend from '../config';
 import {
     USER_LOADING,
     USER_LOADED,

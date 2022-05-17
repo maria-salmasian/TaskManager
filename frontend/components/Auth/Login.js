@@ -58,7 +58,7 @@ const [msg, setMsg] = useState(null)
     clearErrors: PropTypes.func.isRequired,
   };
 
-  componentDidUpdate(prevProps) = () => {
+  (prevProps) = () => {
     const { error, isAuthenticated } = props;
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {

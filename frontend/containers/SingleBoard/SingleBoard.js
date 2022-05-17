@@ -36,7 +36,7 @@ function SingleBoard (props) {
     const [open, setOpen] = useState(false)
     const [taskListName, setTaskListName] = useState("")
 
-  componentDidMount() = () => {
+  function componentDidMount() {
     if (!props.auth.isAuthenticated && props.auth.token) {
       console.log(
         "Token present but it is not authunticated, calling verify token"
