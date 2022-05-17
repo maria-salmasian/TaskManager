@@ -20,7 +20,7 @@ router.post('/', authTaskList, asyncHandler(async (req, res) => {
     if (req.boardAccess) {
 
         if (req.boardAccess === 'User' || req.boardAccess === 'Admin') {
-            const newTask = taskService.createTask(req.body, req.user.name);
+            const newTask = await taskService.createTask(req.body, req.user.name);
             res.status(201).send(newTask);
         }
         else {
@@ -39,7 +39,7 @@ router.put('/:taskid', authTask, asyncHandler(async (req, res) => {
     if (req.boardAccess) {
 
         if (req.boardAccess === 'User' || req.boardAccess === 'Admin') {
-            const updatedTask = taskService.updateTask(req.body, index);
+            const updatedTask = await taskService.updateTask(req.body, index);
             res.send(updatedTask);
         }
         else {
@@ -55,7 +55,7 @@ router.delete('/:taskid', authTask, asyncHandler(async (req, res) => {
     if (req.boardAccess) {
         if (req.boardAccess === 'User' || req.boardAccess === 'Admin') {
             const index = req.params['taskid'];
-            const deletedTask = taskService.deleteTask(index);
+            const deletedTask = await taskService.deleteTask(index);
             res.send({ success: true, deletedTask });
         }
         else {

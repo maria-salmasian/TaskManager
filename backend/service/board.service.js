@@ -39,7 +39,7 @@ module.exports = {
         return taskList;
     },
     async removeBoard(boardId){
-        const board = Board.findById(boardId);
+        const board = await Board.findById(boardId);
         if (!board) {
             throw new NotFoundError(`Board with id = ${boardId} is not found!`);
         }

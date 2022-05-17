@@ -13,7 +13,7 @@ module.exports ={
         return taskList;
     },
     async getTaskList(taskListId){
-        const taskList = TaskList.findById(taskListId);
+        const taskList = await TaskList.findById(taskListId);
         if(!taskList){
             throw new NotFoundError(`Tasklist with id = ${taskListId} is not found!`)
         }

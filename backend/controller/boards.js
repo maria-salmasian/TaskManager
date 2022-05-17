@@ -16,7 +16,7 @@ router.post("/", auth, asyncHandler(async (req, res) => {
 
 router.get("/", auth, asyncHandler(async (req, res, next) => {
   userName = req.user.name;
-  const result = boardService.getTaskListByBoardId(userName);
+  const result = await boardService.getTaskListByBoardId(userName);
   res.send(result);
 
 }));
@@ -27,7 +27,7 @@ router.get("/:boardid", authBoard, asyncHandler(async (req, res, next) => {
   if (req.boardAccess) {
     if (req.boardAccess === "User" || req.boardAccess === "Admin") {
       const index = req.params['boardid'];
-      const taskList = boardService.getTaskList(index);
+      const taskList = await boardService.getTaskList(index);
       res.send(taskList);
     } else {
       res.status(401).send({ success: false, msg: "access denied" });
@@ -44,7 +44,7 @@ router.delete("/:boardid", authBoard, asyncHandler(async (req, res) => {
   if (req.boardAccess) {
     if (req.boardAccess === "Admin") {
       const index = req.params['boardid'];
-      const board = boardService.removeBoard(index);
+      const board = await boardService.removeBoard(index);
       res.send(board);
     } else {
       res.status(401).send({ success: false, msg: "access denied" });

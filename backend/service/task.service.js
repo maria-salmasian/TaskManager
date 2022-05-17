@@ -14,7 +14,7 @@ module.exports = {
             createdBy: userName,
         });
         newTask.save();
-        TaskList.findByIdAndUpdate({_id: taskListId}, {$push: {tasks: newTask._id}});
+        TaskList.findByIdAndUpdate({_id: taskListId}, {$push: {tasks: newTask._id}}).exec();
         return newTask;
     },
     async updateTask(body,taskId){
@@ -27,11 +27,11 @@ module.exports = {
             deadline: body.dueDate,
             updatedAt: new Date(),       
         }
-        const task = Task.findByIdAndUpdate(taskId, updatedTask, {new: true});
+        const task = await Task.findByIdAndUpdate(taskId, updatedTask, {new: true});
         return task;
     },
     async deleteTask(taskId){
-        const task = Task.findById(taskId);
+        const task = await Task.findById(taskId);
         if(!task){
             throw new NotFoundError("This task doesn't exist");
         }
