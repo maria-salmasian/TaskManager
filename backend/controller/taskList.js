@@ -26,8 +26,8 @@ router.post('/', authBoard, asyncHandler(async (req, res) => {
 
 router.get('/:tasklistid', authTaskList, asyncHandler(async (req, res) => {
 
-    if (request.boardAccess) {
-        if (request.boardAccess === 'User' || request.boardAccess === 'Admin') {
+    if (req.boardAccess) {
+        if (req.boardAccess === 'User' || req.boardAccess === 'Admin') {
             const index = req.params['tasklistid'];
             const taskList = taskListService.getTaskList(index);
             res.send(taskList);

@@ -41,8 +41,8 @@ router.get("/:boardid", authBoard, asyncHandler(async (req, res, next) => {
 
 router.delete("/:boardid", authBoard, asyncHandler(async (req, res) => {
 
-  if (request.boardAccess) {
-    if (request.boardAccess === "Admin") {
+  if (req.boardAccess) {
+    if (req.boardAccess === "Admin") {
       const index = req.params['boardid'];
       const board = boardService.removeBoard(index);
       res.send(board);
