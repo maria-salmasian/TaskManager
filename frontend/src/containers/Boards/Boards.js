@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 import { getBoards, createBoard, setWorkingBoard } from "../../actions/boardActions";
 import {verifyToken} from "../../actions/authActions";
 
-const classes = useStyles();
+
 
 const useStyles = (theme) => ({
   root: {
@@ -54,8 +54,11 @@ const useStyles = (theme) => ({
 });
 
 function Boards(props) {
-  const [open, setOpen] = useState(false);
-  const [boardName, setBoardName] = useState("");
+  const[state, setState] = useState({
+    open: false,
+    boardName: ''
+  })
+ 
 
 
   function componentDidMount() {
@@ -67,13 +70,13 @@ function Boards(props) {
     props.getBoards();
   }
 
-  onChange = (e) => {
+  const onChange = (e) => {
     setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  toggle = () => {
+  const toggle = () => {
     console.log("Toggle is called, setting value to: " + !state.open);
     props.clearErrors();
     setState({
@@ -81,7 +84,7 @@ function Boards(props) {
     });
   };
 
-  handleCreateBoard = () => {
+  const handleCreateBoard = () => {
     const { boardName, name } = state;
     const newBoard = {
       boardName,
@@ -91,12 +94,15 @@ function Boards(props) {
     props.createBoard(newBoard);
   };
 
-  handleBoardClick = (boardid, boardname) => {
+  const handleBoardClick = (boardid, boardname) => {
     console.log('Clicked Board boardid is:' +boardid );
     props.setWorkingBoard(boardid, boardname);
     const path = `/board`;
     window.location.href=path;
-  }
+  };
+  const { classes } = props;
+  const { boards } = props.boards;
+  const { isAuthenticated } = props.auth;
 
     const newBoardBody = () => (
     <div className={classes.root}>

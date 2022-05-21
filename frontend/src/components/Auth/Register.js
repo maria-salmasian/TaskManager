@@ -17,20 +17,46 @@ import {
   ModalBody,
 } from "reactstrap";
 
-
+const useStyles = (theme) => ({
+  root: {
+    flexGrow: 1,
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    "& > *": {
+      margin: theme.spacing(10),
+      width: theme.spacing(55),
+      height: theme.spacing(40),
+    },
+  },
+  textField: {
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
+    marginTop: theme.spacing(2),
+    width: "40ch",
+  },
+  button: {
+    backgroundColor: "#2874a6",
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
+    marginTop: theme.spacing(5),
+    width: "45ch",
+  },
+});
 
 const Register = (props)=> {
-  const [modal, setModal] = useState(false)
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [msg, setMsg] = useState(null)
+  const [state, setState] = useState({
+    form: {
+      name: '',
+      lastname: '',
+      email: '',
+      password: '',
+    },
+    modal: false,
+    msg: null,
+  });
 
-
-
-
-  PropTypes = {
+   const propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
@@ -54,20 +80,20 @@ const Register = (props)=> {
     }
   }
 
-  toggle = () => {
+  const toggle = () => {
     props.clearErrors();
     setState({
       modal: !state.modal,
     });
   };
 
-  onChange = (e) => {
+  const onChange = (e) => {
     setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const { firstName, lastName, email, password } = state;
     const newUser = {
@@ -78,6 +104,7 @@ const Register = (props)=> {
     };
     props.register(newUser);
   };
+  const { classes } = props;
 
 
     return (

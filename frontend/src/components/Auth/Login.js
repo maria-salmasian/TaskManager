@@ -44,23 +44,26 @@ const useStyles = (theme) => ({
   },
 });
 
-function Login (props){
-const [modal, setModal] = useState(false)
-const [email, setEmail] = useState("")
-const [password, setPassword] = useState("")
-const [msg, setMsg] = useState(null)
+const Login = (props) => {
+  const [state, setState] = useState({
+    form: {
+      email: '',
+      password: '',
+    },
+    modal: false,
+    msg: null,
+  });
 
-
-   propTypes = {
+  const propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
   };
 
-  (prevProps) = () => {
+  (props) = () => {
     const { error, isAuthenticated } = props;
-    if (error !== prevProps.error) {
+    if (error !== props.error) {
       if (error.id === "LOGIN_FAIL") {
         setState({ msg: error.msg.msg });
       } else {
@@ -74,21 +77,23 @@ const [msg, setMsg] = useState(null)
       }
     }
   }
-
-  toggle = () => {
+  
+  const toggle = () => {
     props.clearErrors();
     setState({
       modal: !state.modal,
     });
   };
 
-  onChange = (e) => {
+
+
+  const onChange = (e) => {
     setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = state;
     const user = {
@@ -99,53 +104,53 @@ const [msg, setMsg] = useState(null)
   };
 
   const classes = useStyles();
-  return(
-    
-      <div>
-        <NavLink onClick={toggle} href="#">
-          Login
-        </NavLink>
-        <Modal isOpen={state.modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>User Login</ModalHeader>
-          <ModalBody>
-            {state.msg ? (
-              <Alert color="danger"> {state.msg} </Alert>
-            ) : null}
-            <Form onSubmit={onSubmit}>
-              <FormGroup>
-                <TextField
-                  className={classes.textField}
-                  name="email"
-                  label="Email"
-                  id="standard-size-email"
-                  defaultValue=""
-                  size="small"
-                  onChange={onChange}
-                />
-                <TextField
-                  className={classes.textField}
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="standard-password-input"
-                  defaultValue=""
-                  size="small"
-                  onChange={onChange}
-                />
+  return (
 
-                <Button
-                  className={classes.button}
-                >
-                  Login
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
-    
-  
-);
+    <div>
+      <NavLink onClick={toggle} href="#">
+        Login
+      </NavLink>
+      <Modal isOpen={state.modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>User Login</ModalHeader>
+        <ModalBody>
+          {state.msg ? (
+            <Alert color="danger"> {state.msg} </Alert>
+          ) : null}
+          <Form onSubmit={onSubmit}>
+            <FormGroup>
+              <TextField
+                className={classes.textField}
+                name="email"
+                label="Email"
+                id="standard-size-email"
+                defaultValue=""
+                size="small"
+                onChange={onChange}
+              />
+              <TextField
+                className={classes.textField}
+                name="password"
+                label="Password"
+                type="password"
+                id="standard-password-input"
+                defaultValue=""
+                size="small"
+                onChange={onChange}
+              />
+
+              <Button
+                className={classes.button}
+              >
+                Login
+              </Button>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+      </Modal>
+    </div>
+
+
+  );
 }
 
 

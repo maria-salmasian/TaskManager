@@ -11,7 +11,6 @@ import NewTask from "../Task/NewTask";
 import Task from "../Task/Task";
 import { createTask } from "../../../actions/taskListActions";
 
-const {classes} = props
 
 const useStyles = (theme) =>({
   root: {
@@ -25,15 +24,20 @@ const useStyles = (theme) =>({
 });
 
 function TaskListSwimLane(props) {
-    const [newTask, setNewTask] = useState(false)
-    const [newTaskTitle, setnewTaskTitle] = useState(null)
+    const[state, setState] = useState({
+      newTask: false,
+      newTaskTitle: null
+    })
+   
+  const {classes} = props
 
 
-  addAnotherTask = () => {
+
+  const addAnotherTask = () => {
     setState({ newTask: true });
   };
 
-  addTask = (props) => {
+  const addTask = (props) => {
     const newTask = {
         header: state.newTaskTitle,
         taskListId: props.taskListId
@@ -43,11 +47,11 @@ function TaskListSwimLane(props) {
 
   };
 
-  disableNewTak= () => {
+  const disableNewTak= () => {
     setState({newTask: false});
   };
 
-  setNewTaskTitle = (title) => {
+ const setNewTaskTitle = (title) => {
     setState({
         ...state,
         newTaskTitle: title

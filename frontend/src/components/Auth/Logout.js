@@ -6,7 +6,7 @@ import { NavLink } from 'reactstrap';
 
 export function Logout () {
     
-    propTypes = {
+    const propTypes = {
         logout: PropTypes.func.isRequired
     }
     

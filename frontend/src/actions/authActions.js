@@ -1,5 +1,5 @@
 import axios from 'axios';
-const backend = 'http://localhost:5000';
+import * as backend from '../config';
 import {
     USER_LOADING,
     USER_LOADED,

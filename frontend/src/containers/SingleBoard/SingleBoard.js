@@ -30,11 +30,13 @@ const styles = {
   },
 };
 
-const classes = useStyles();
 
 function SingleBoard (props) {
-    const [open, setOpen] = useState(false)
-    const [taskListName, setTaskListName] = useState("")
+    const [state, setState] = useState({
+      open: false,
+      taskListName : ''
+    })
+   
 
   function componentDidMount() {
     if (!props.auth.isAuthenticated && props.auth.token) {
@@ -47,13 +49,13 @@ function SingleBoard (props) {
     props.getTaskLists(props.boards.workingBoard);
   }
 
-  onChange = (e) => {
+  const onChange = (e) => {
     setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  handleCreateBoardList = (taskListName) => {
+  const handleCreateBoardList = (taskListName) => {
     const newTaskList = {
       taskListName,
       boardId: props.boards.workingBoard,
@@ -63,6 +65,9 @@ function SingleBoard (props) {
     );
     props.createtaskList(newTaskList);
   };
+  const { classes } = props;
+  const { taskLists } = props.taskLists;
+  const hasTaskLists = props.taskLists.taskLists.taskLists ? true : false;
 
 
     const showTaskLists = () => {

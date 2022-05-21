@@ -38,18 +38,20 @@ const useStyles = (theme) => ({
 });
 
 function NewTaskList(props) {
-  const [value, setValue] = useState(null)
-  const [open, setIsOpen] = useState(false)
+  const[state, setState] = useState({
+    value:null,
+    open:false
+  })
 
-  handleChange = (event) => {
+  const handleChange = (event) => {
     setState({value: event.target.value});
   };
 
-  toggle = () => {
+  const toggle = () => {
     setState({open: !state.open});
   };
 
-  handleCreateBoardList = () => {
+  const handleCreateBoardList = () => {
     console.log("Value is: " + state.value);
     props.handleCreateBoardList(state.value);
   };

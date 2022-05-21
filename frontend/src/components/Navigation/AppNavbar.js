@@ -14,14 +14,14 @@ import Login from '../Auth/Login';
 import Logout from '../Auth/Logout';
 
 function AppNavbar(props) {
-    const [isOpen, setIsOpen] = useState(false)
+    const [state, setState] = useState({ isOpen: false })
 
-  
+
     const propTypes = {
         auth: PropTypes.object.isRequired
     }
 
-    toggle = () => {
+    const toggle = () => {
         setState({
             isOpen: !state.isOpen
         })
@@ -51,22 +51,22 @@ function AppNavbar(props) {
         </Fragment>
     );
 
-    return(
-        
-        
-            <div>
-                <Navbar color="dark" dark expand="md">
-                        <NavbarBrand href="/">Task Manager</NavbarBrand>
-                        <NavbarToggler onClick={toggle} />
-                        <Collapse isOpen={state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                {isAuthenticated ? authLinks : guestLinks}
-                            </Nav>
-                        </Collapse>
-                </Navbar>
+    return (
 
-            </div>
-        
+
+        <div>
+            <Navbar color="dark" dark expand="md">
+                <NavbarBrand href="/">Task Manager</NavbarBrand>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={state.isOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        {isAuthenticated ? authLinks : guestLinks}
+                    </Nav>
+                </Collapse>
+            </Navbar>
+
+        </div>
+
     )
 }
 
