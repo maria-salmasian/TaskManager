@@ -44,8 +44,6 @@ const useStyles = (theme) => ({
   },
 });
 
-const {classes} = useStyles()
-
 function Login (props){
 const [modal, setModal] = useState(false)
 const [email, setEmail] = useState("")
@@ -53,20 +51,20 @@ const [password, setPassword] = useState("")
 const [msg, setMsg] = useState(null)
 
 
-   PropTypes = {
+   propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
   };
 
-  function componentDidUpdate(prevProps) {
+  (prevProps) = () => {
     const { error, isAuthenticated } = props;
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {
-        useState({ msg: error.msg.msg });
+        setState({ msg: error.msg.msg });
       } else {
-        useState({ msg: null });
+        setState({ msg: null });
       }
     }
 
@@ -79,42 +77,41 @@ const [msg, setMsg] = useState(null)
 
   toggle = () => {
     props.clearErrors();
-    useState({
-      modal: !this.state.modal,
+    setState({
+      modal: !state.modal,
     });
   };
 
   onChange = (e) => {
-    useState({
+    setState({
       [e.target.name]: e.target.value,
     });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password } = state;
     const user = {
       email,
       password,
     };
-    // Login
     props.login(user);
   };
 
-  const classes = props;
+  const classes = useStyles();
   return(
     
       <div>
         <NavLink onClick={toggle} href="#">
           Login
         </NavLink>
-        <Modal isOpen={state.modal} toggle={this.toggle}>
+        <Modal isOpen={state.modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>User Login</ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
+            {state.msg ? (
               <Alert color="danger"> {state.msg} </Alert>
             ) : null}
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={onSubmit}>
               <FormGroup>
                 <TextField
                   className={classes.textField}
@@ -123,7 +120,7 @@ const [msg, setMsg] = useState(null)
                   id="standard-size-email"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
                 <TextField
                   className={classes.textField}
@@ -133,7 +130,7 @@ const [msg, setMsg] = useState(null)
                   id="standard-password-input"
                   defaultValue=""
                   size="small"
-                  onChange={this.onChange}
+                  onChange={onChange}
                 />
 
                 <Button

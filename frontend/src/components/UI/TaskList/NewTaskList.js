@@ -42,30 +42,30 @@ function NewTaskList(props) {
   const [open, setIsOpen] = useState(false)
 
   handleChange = (event) => {
-    this.setState({value: event.target.value});
+    setState({value: event.target.value});
   };
 
   toggle = () => {
-    this.setState({open: !this.state.open});
+    setState({open: !state.open});
   };
 
   handleCreateBoardList = () => {
-    console.log("Value is: " + this.state.value);
-    this.props.handleCreateBoardList(this.state.value);
+    console.log("Value is: " + state.value);
+    props.handleCreateBoardList(state.value);
   };
 
   const { classes } = props;
     const newColumnBody =()=> (
       <div className={classes.root}>
         <Modal
-          isOpen={this.state.open}
-          toggle={this.toggle}
+          isOpen={state.open}
+          toggle={toggle}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
-          <ModalHeader toggle={this.toggle}>Add New Column</ModalHeader>
-          {this.props.error.status ? (
-              <Alert severity="error">{this.props.error.msg.msg}</Alert>
+          <ModalHeader toggle={toggle}>Add New Column</ModalHeader>
+          {props.error.status ? (
+              <Alert severity="error">{props.error.msg.msg}</Alert>
             ) : null}
           <TextField
             className={classes.textField}
@@ -74,13 +74,13 @@ function NewTaskList(props) {
             id="standard-size-small"
             defaultValue=""
             size="small"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
           <Button
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={this.handleCreateBoardList}
+            onClick={handleCreateBoardList}
           >
             ADD
           </Button>
@@ -97,7 +97,7 @@ function NewTaskList(props) {
         className={classes.button}
         variant="contained"
         color="primary"
-        onClick={this.toggle}
+        onClick={toggle}
       >
         ADD COLUMN
       </Button>

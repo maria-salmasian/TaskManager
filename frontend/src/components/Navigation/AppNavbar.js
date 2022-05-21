@@ -9,11 +9,11 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Register from '../Auth/Registers';
+import Register from '../Auth/Register';
 import Login from '../Auth/Login';
 import Logout from '../Auth/Logout';
 
-function AppNavbar() {
+function AppNavbar(props) {
     const [isOpen, setIsOpen] = useState(false)
 
   
@@ -22,12 +22,12 @@ function AppNavbar() {
     }
 
     toggle = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
+        setState({
+            isOpen: !state.isOpen
         })
     };
 
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, user } = props.auth;
     const authLinks = (
         <Fragment>
             <NavItem>
@@ -57,8 +57,8 @@ function AppNavbar() {
             <div>
                 <Navbar color="dark" dark expand="md">
                         <NavbarBrand href="/">Task Manager</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
+                        <NavbarToggler onClick={toggle} />
+                        <Collapse isOpen={state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 {isAuthenticated ? authLinks : guestLinks}
                             </Nav>

@@ -17,36 +17,9 @@ import {
   ModalBody,
 } from "reactstrap";
 
-const useStyles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(10),
-      width: theme.spacing(55),
-      height: theme.spacing(40),
-    },
-  },
-  textField: {
-    marginLeft: theme.spacing(5),
-    marginRight: theme.spacing(5),
-    marginTop: theme.spacing(2),
-    width: "40ch",
-  },
-  button: {
-    backgroundColor: "#2874a6",
-    marginLeft: theme.spacing(5),
-    marginRight: theme.spacing(5),
-    marginTop: theme.spacing(5),
-    width: "45ch",
-  },
-});
 
-const classes = useStyles();
 
-function Register(props) {
+const Register = (props)=> {
   const [modal, setModal] = useState(false)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -57,14 +30,14 @@ function Register(props) {
 
 
 
-  propTypes = {
+  PropTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
   };
 
-  componentDidUpdate(prevProps) = () => {
+  const componentDidUpdate = (prevProps) => {
     const { error, isAuthenticated } = props;
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {

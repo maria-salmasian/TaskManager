@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as backend from '../config';
+const backend = 'http://localhost:5000';
 import {
     USER_LOADING,
     USER_LOADED,
@@ -9,7 +9,7 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     REGISTER_FAIL
-} from './types';
+} from '../actions/types';
 
 import {returnErrors} from './errorActions';
 
