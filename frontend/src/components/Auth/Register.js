@@ -89,7 +89,8 @@ const Register = (props)=> {
 
   const onChange = (e) => {
     setState({
-      [e.target.name]: e.target.value,
+      form: { [e.target.name]: e.target.value },
+      ...state
     });
   };
 

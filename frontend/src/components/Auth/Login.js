@@ -61,23 +61,23 @@ const Login = (props) => {
     clearErrors: PropTypes.func.isRequired,
   };
 
-  (props) = () => {
-    const { error, isAuthenticated } = props;
-    if (error !== props.error) {
-      if (error.id === "LOGIN_FAIL") {
-        setState({ msg: error.msg.msg });
-      } else {
-        setState({ msg: null });
-      }
-    }
-
-    if (state.modal) {
-      if (isAuthenticated) {
-        toggle();
-      }
-    }
-  }
-  
+  // (props) = () => {
+  //   const { error, isAuthenticated } = props;
+  //   if (error !== props.error) {
+  //     if (error.id === "LOGIN_FAIL") {
+  //       setState({ msg: error.msg.msg });
+  //     } else {
+  //       setState({ msg: null });
+  //     }
+  //   }
+  //
+  //   if (state.modal) {
+  //     if (isAuthenticated) {
+  //       toggle();
+  //     }
+  //   }
+  // }
+  //
   const toggle = () => {
     // props.clearErrors();
     setState({
@@ -89,7 +89,8 @@ const Login = (props) => {
 
   const onChange = (e) => {
     setState({
-      [e.target.name]: e.target.value,
+      form: {[e.target.name]: e.target.value},
+      ...state
     });
   };
 
