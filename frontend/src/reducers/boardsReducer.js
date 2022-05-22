@@ -8,7 +8,7 @@ const initialState = {
   workingBoardName: localStorage.getItem('workingboardname'),
 };
  
-export default function (state = initialState, action) {
+export default function boardsReduce(state = initialState, action) {
   switch (action.type) {
     case actions.GET_BOARDS:
       return {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Jumbotron, Container } from 'reactstrap';
 
 const Guest = (props) => {
   return (
