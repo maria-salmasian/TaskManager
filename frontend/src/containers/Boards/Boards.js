@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Alert from "@material-ui/lab/Alert";
+// import Alert from "@material-ui/lab/Alert";
 
 import { Modal, ModalHeader, Container } from "reactstrap";
 
@@ -108,7 +108,8 @@ function Boards(props) {
     <div className={classes.root}>
         <Paper>
           {props.error.status ? (
-            <Alert severity="error">{props.error.msg.msg}</Alert>
+            <div>{props.error.msg.msg}</div>
+            // <Alert severity="error">{props.error.msg.msg}</Alert>
           ) : null}
           <TextField
             className={classes.textField}
@@ -143,7 +144,8 @@ function Boards(props) {
         >
           <span />
           <Fab className={classes.icon} aria-label="add" onClick={toggle}>
-            <AddIcon />
+            Add
+            {/*<AddIcon />*/}
           </Fab>
         </Grid>
         <Modal

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import './App.css';
+import './app.css';
 import Layout from "./components/Hoc/Layout/Layout";
 import Boards from "./containers/Boards/Boards";
 import SingleBoard from "./containers/SingleBoard/SingleBoard";
@@ -14,7 +14,7 @@ import store from "./store";
 function App() {
     return (
       <Provider store={store}>
-        <div className="App">
+        <div>
           <Layout>
             <BrowserRouter>
               <Routes>
@@ -22,7 +22,7 @@ function App() {
                 <Route path="/" exact component={Boards} />
               </Routes>
             </BrowserRouter>
-          </Layout> 
+          </Layout>
         </div>
       </Provider>
     );

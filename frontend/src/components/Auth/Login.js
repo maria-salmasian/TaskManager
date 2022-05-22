@@ -24,22 +24,22 @@ const useStyles = (theme) => ({
     justifyContent: "center",
     flexWrap: "wrap",
     "& > *": {
-      margin: theme.spacing(10),
-      width: theme.spacing(55),
-      height: theme.spacing(40),
+      margin: theme?.spacing(10),
+      width: theme?.spacing(55),
+      height: theme?.spacing(40),
     },
   },
   textField: {
-    marginLeft: theme.spacing(5),
-    marginRight: theme.spacing(5),
-    marginTop: theme.spacing(2),
+    marginLeft: theme?.spacing(5),
+    marginRight: theme?.spacing(5),
+    marginTop: theme?.spacing(2),
     width: "40ch",
   },
   button: {
     backgroundColor: "#2874a6",
-    marginLeft: theme.spacing(5),
-    marginRight: theme.spacing(5),
-    marginTop: theme.spacing(5),
+    marginLeft: theme?.spacing(5),
+    marginRight: theme?.spacing(5),
+    marginTop: theme?.spacing(5),
     width: "45ch",
   },
 });
@@ -79,7 +79,7 @@ const Login = (props) => {
   }
   
   const toggle = () => {
-    props.clearErrors();
+    // props.clearErrors();
     setState({
       modal: !state.modal,
     });

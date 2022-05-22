@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Alert from "@material-ui/lab/Alert";
+// import Alert from "@material-ui/lab/Alert";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
@@ -67,7 +67,8 @@ function NewTaskList(props) {
         >
           <ModalHeader toggle={toggle}>Add New Column</ModalHeader>
           {props.error.status ? (
-              <Alert severity="error">{props.error.msg.msg}</Alert>
+              props.error.msg.msg
+              // <Alert severity="error">{props.error.msg.msg}</Alert>
             ) : null}
           <TextField
             className={classes.textField}

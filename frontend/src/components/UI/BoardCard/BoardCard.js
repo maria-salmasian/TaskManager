@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+// import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 
 const useStyles = makeStyles({
@@ -52,7 +52,7 @@ export default function BoardCard(props) {
         </Typography>
         <br/>
         <Typography variant="body2" component="p">
-        <AccessTimeIcon fontSize="small" className={classes.time}/>{" "+date.getDate()+ " " + month}
+        {/*<AccessTimeIcon fontSize="small" className={classes.time}/>{" "+date.getDate()+ " " + month}*/}
         </Typography>
         </CardContent>
       </CardActionArea>
